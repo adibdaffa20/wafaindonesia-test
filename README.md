@@ -126,8 +126,6 @@ cp .env.example .env
 
 Edit .env:
 
-APP_NAME="Wafa Dashboard"
-
 DB_DATABASE=wafa_dashboard
 DB_USERNAME=root
 DB_PASSWORD=
