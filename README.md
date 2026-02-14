@@ -2,6 +2,7 @@ Dashboard Lead - Wafa Indonesia
 Sistem Pendaftaran & Monitoring Admin
 
 ![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/form.jpeg)
+![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/mobileform.jpeg)
 ![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/admin.jpeg)
 ![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/dashboard.jpeg)
 ![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/activitylog.jpeg)
