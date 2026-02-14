@@ -1,4 +1,4 @@
-Wafa Dashboard
+Dashboard Lead - Wafa Indonesia
 Sistem Pendaftaran & Monitoring Admin
 
 
@@ -8,7 +8,7 @@ Sistem Pendaftaran & Monitoring Admin
 
 
 
-Wafa Dashboard adalah sistem pendaftaran berbasis Laravel + Vue 3 yang dilengkapi dengan Dashboard Admin, Activity Log, dan proteksi Google reCAPTCHA.
+Dashboard Lead adalah sistem pendaftaran berbasis Laravel + Vue 3 yang dilengkapi dengan Dashboard Admin, Activity Log, dan proteksi Google reCAPTCHA.
 
 📝 Landing Page Form Pendaftaran
 
