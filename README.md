@@ -2,11 +2,10 @@ Dashboard Lead - Wafa Indonesia
 Sistem Pendaftaran & Monitoring Admin
 
 <img src="https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/mobileform.jpeg?raw=true" width="300">
-
-![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/mobileform.jpeg)
-![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/admin.jpeg)
-![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/dashboard.jpeg)
-![alt text](https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/activitylog.jpeg)
+<img src="https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/form.jpeg?raw=true" width="300">
+<img src="https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/admin.jpeg?raw=true" width="300">
+<img src="https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/dashboard.jpeg?raw=true" width="300">
+<img src="https://github.com/adibdaffa20/wafaindonesia-test/blob/main/public/assets/activitylog.jpeg?raw=true" width="300">
 
 
 Dashboard Lead adalah sistem pendaftaran berbasis Laravel + Vue 3 yang dilengkapi dengan Dashboard Admin, Activity Log, dan proteksi Google reCAPTCHA.
