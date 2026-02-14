@@ -14,6 +14,35 @@
           placeholder="Cari nama / WA / email / lembaga..."
         />
 
+        <!-- FILTER TANGGAL/BULAN/TAHUN -->
+        <select v-model="mode" class="filter-input" @change="onModeChange">
+          <option value="day">Tanggal</option>
+          <option value="month">Bulan</option>
+          <option value="year">Tahun</option>
+        </select>
+
+        <input
+          v-if="mode === 'day'"
+          type="date"
+          v-model="date"
+          class="filter-input"
+          title="Filter tanggal"
+        />
+
+        <select v-if="mode === 'month'" v-model="month" class="filter-input" title="Filter bulan">
+          <option v-for="m in months" :key="m.value" :value="m.value">
+            {{ m.label }}
+          </option>
+        </select>
+
+        <select v-if="mode === 'month' || mode === 'year'" v-model="year" class="filter-input" title="Filter tahun">
+          <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
+        </select>
+
+        <button class="btn" @click="resetFilter" :disabled="loading" title="Reset filter tanggal/bulan/tahun">
+          Reset Filter
+        </button>
+
         <button class="btn primary" @click="fetchLeads(1)" :disabled="loading">
           {{ loading ? 'Loading...' : 'Cari' }}
         </button>
@@ -190,6 +219,58 @@ function formatDate(iso) {
   return String(iso).slice(0, 10)
 }
 
+// ===== Filter Tanggal/Bulan/Tahun =====
+const mode = ref('day') // day | month | year
+const date = ref(todayISO())
+const month = ref(String(new Date().getMonth() + 1).padStart(2, '0'))
+const year = ref(String(new Date().getFullYear()))
+
+const months = [
+  { value: '01', label: 'Januari' },
+  { value: '02', label: 'Februari' },
+  { value: '03', label: 'Maret' },
+  { value: '04', label: 'April' },
+  { value: '05', label: 'Mei' },
+  { value: '06', label: 'Juni' },
+  { value: '07', label: 'Juli' },
+  { value: '08', label: 'Agustus' },
+  { value: '09', label: 'September' },
+  { value: '10', label: 'Oktober' },
+  { value: '11', label: 'November' },
+  { value: '12', label: 'Desember' },
+]
+
+const years = (() => {
+  const now = new Date().getFullYear()
+  return Array.from({ length: 7 }, (_, i) => String(now + 1 - i))
+})()
+
+function todayISO() {
+  const d = new Date()
+  const yyyy = d.getFullYear()
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${yyyy}-${mm}-${dd}`
+}
+
+function onModeChange() {
+  if (mode.value === 'day' && !date.value) date.value = todayISO()
+  if (mode.value === 'month') {
+    if (!month.value) month.value = String(new Date().getMonth() + 1).padStart(2, '0')
+    if (!year.value) year.value = String(new Date().getFullYear())
+  }
+  if (mode.value === 'year' && !year.value) year.value = String(new Date().getFullYear())
+}
+
+function resetFilter() {
+  mode.value = 'day'
+  date.value = todayISO()
+  month.value = String(new Date().getMonth() + 1).padStart(2, '0')
+  year.value = String(new Date().getFullYear())
+  fetchLeads(1)
+}
+
+
 async function fetchLeads(page = 1) {
   loading.value = true
   serverError.value = ''
@@ -200,6 +281,15 @@ async function fetchLeads(page = 1) {
     const params = new URLSearchParams()
     if (q.value.trim()) params.set('q', q.value.trim())
     params.set('page', String(page))
+  // filter created_at
+if (mode.value === 'day' && date.value) {
+  params.set('date', date.value)
+} else if (mode.value === 'month') {
+  if (month.value) params.set('month', month.value)
+  if (year.value) params.set('year', year.value)
+} else if (mode.value === 'year') {
+  if (year.value) params.set('year', year.value)
+}
 
     const res = await fetch(`/dashboard/api/leads?${params.toString()}`, {
       headers: { Accept: 'application/json' },
@@ -601,6 +691,23 @@ td:nth-child(5){ /* Lembaga */
   color: rgba(15,23,42,0.70);
   font-weight: 650;
 }
+
+/* Filter controls (tanggal/bulan/tahun) */
+.filter-input{
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.6px solid rgba(15,23,42,0.14);
+  background: #fff;
+  outline: none;
+  font-size: 13px;
+  color: rgba(15,23,42,0.86);
+}
+
+.filter-input:focus{
+  border-color: rgba(233,30,99,0.55);
+  box-shadow: var(--focus);
+}
+
 
 /* ====== Modal (clean + branded top strip) ====== */
 .modal-backdrop{

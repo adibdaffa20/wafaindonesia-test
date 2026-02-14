@@ -23,6 +23,15 @@ class RegistrationDashboardController extends Controller
             });
         }
 
+        if ($request->filled('date')) {
+        $query->whereDate('created_at', $request->date);
+        } elseif ($request->filled('month') && $request->filled('year')) {
+            $query->whereMonth('created_at', $request->month)
+                ->whereYear('created_at', $request->year);
+        } elseif ($request->filled('year')) {
+            $query->whereYear('created_at', $request->year);
+        }
+
         $leads = $query->paginate(10)->withQueryString();
 
         return response()->json($leads);

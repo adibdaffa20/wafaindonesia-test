@@ -12,7 +12,7 @@
         </div>
         <h1 class="hero-title">Form Pendaftaran</h1>
         <p class="hero-subtitle">
-          Silakan isi data berikut. Data akan masuk ke dashboard admin untuk diproses.
+          Silakan isi data berikut. Data akan masuk ke database admin untuk diproses.
         </p>
       </header>
 
